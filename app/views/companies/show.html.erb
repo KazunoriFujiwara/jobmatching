@@ -1,0 +1,25 @@
+<h1>Companies#show</h1>
+<p>Find me in app/views/companies/show.html.erb</p>
+<div class="row">
+  <aside class="col-sm-4">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"><%= @company.name %></h3>
+      </div>
+      <div class="card-body">
+        <img class="rounded img-fluid" src="<%= gravatar_url(@company, { size: 500 }) %>" alt="">
+      </div>
+      <div class="card-body">
+        <%#= link_to '新規お仕事の登録',new_job_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </aside>
+  <div class="col-sm-8">
+    <ul class="nav nav-tabs nav-justified mb-3">
+      <%#<li class="nav-item"><a href="#" class="nav-link <%= 'active' if current_page?(company_path(@company)) %><%#">お仕事一覧<span class="badge badge-secondary"></span></a></li>
+      <%#<li class="nav-item"><a href="#" class="nav-link",  new_job_path %><%#受託者一覧<span class="badge badge-secondary"></span></a></li>
+    </ul>
+    <%#= render 'jobs', jobs: @jobs %>
+  </div>
+</div>
+

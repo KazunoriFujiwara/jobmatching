@@ -1,0 +1,18 @@
+<% if @companies.any? %>
+  <% @companies.each do |company| %>
+  <li class="media  mb-3">
+    <img class="mr-2 rounded" src="<%= gravatar_url(company, { size: 50 }) %>" alt="">
+    <div class="media-body">
+        <div>
+          <b><%= company.name %></b>
+        </div>
+        <div>
+         <span class="text-muted"> registered at <%= company.created_at.to_s(:datetime_jp) %></span>
+        </div>
+        <div>
+          <%#= render 'relationships/follow_button', company: company %>
+        </div>
+    </div>
+  </li>
+  <% end %>
+<% end %>
