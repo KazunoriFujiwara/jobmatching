@@ -1,9 +1,61 @@
 <% if logged_in? %>
-  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+  <div class="row">
+  <aside class="col-sm-4">
+    <div class="card">
+      <div class="card-header">
+        <h1 class="card-title"><%= current_user.name %></h1>
+      </div>
+      <div class="card-body">
+        <img class="rounded img-fluid" src="<%= gravatar_url(current_user, { size: 500 }) %>" alt="">
+      </div>
+    </div>
+  </aside>
+  <div class="col-sm-8">
+    <ul class="nav nav-tabs nav-justified mb-3">
+      <li class="nav-item"><a href="#" class="nav-link">お仕事一覧</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">お気に入り企業</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">受けたお仕事</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">企業一覧</a></li>
+    </ul>
+  </div>
+</div>
+<% elsif clogged_in? %>
+  <h1>お仕事ページ</h1>
+    <div class="row">
+    <aside class="col-sm-4">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title"><%= current_company.name %></h3>
+        </div>
+        <div class="card-body">
+          <img class="rounded img-fluid" src="<%= gravatar_url(current_company, { size: 500 }) %>" alt="">
+        </div>
+        <div class="card-body">
+          <%= link_to '新規お仕事の登録',new_job_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+    </aside>
+    <div class="col-sm-8">
+      <ul class="nav nav-tabs nav-justified mb-3">
+        <li class="nav-item"><a href="#" class="nav-link <%= 'active' if current_page?(company_path(current_company)) %>">お仕事一覧<span class="badge badge-secondary"></span></a></li>
+        <li class="nav-item"><a href="#" class="nav-link",  new_job_path %>受託者一覧<span class="badge badge-secondary"></span></a></li>
+      </ul>
+      <%#= render 'companies/jobs', jobs: @jobs %>
+    </div>
+  </div>
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">
-      <h1>Welcome to the Microposts</h1>
+      <h1 class="text-uppercase text-muted font-weight-bold">お仕事マッチングサイト</h1>
+    </div> 
+  </div>
+  <div class="container py-4">
+    <div class="text-center">
+      <%= link_to 'お仕事をご登録の企業様', new_company_path %>
+    </div>
+  </div>
+  <div class="container py-4">
+    <div class="text-center">
       <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
     </div>
   </div>
