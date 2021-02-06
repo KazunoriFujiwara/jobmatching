@@ -24,6 +24,11 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def appliers
+    @company = current_company
+    #@companies = Company.all
+  end
+  
   private
 
   def company_params

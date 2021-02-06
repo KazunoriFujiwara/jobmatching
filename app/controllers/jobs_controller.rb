@@ -6,6 +6,11 @@ class JobsController < ApplicationController
     @job = Job.new
   end
   
+  def show
+    @relationship = current_user.relationships.find_by(job_id: @mjob.id)
+    @relationships = @job.relationship_users
+  end
+  
   def create
     @job = current_company.jobs.build(job_params)
     if @job.save

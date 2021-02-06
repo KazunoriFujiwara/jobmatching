@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'relationships/create'
+  get 'relationships/destroy'
   get 'favorites/create'
   get 'favorites/destroy'
   get 'jobs/create'
@@ -22,6 +24,7 @@ Rails.application.routes.draw do
   end
   
   get 'corporation', to: 'users#corporationes'
+  get 'applier', to: 'companies#appliers'
   get 'clogin', to: 'sessions#c_new'
   post 'clogin', to: 'sessions#c_create'
   delete 'clogout', to: 'sessions#c_destroy'
