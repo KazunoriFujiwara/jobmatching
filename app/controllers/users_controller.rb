@@ -6,6 +6,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @companies = Company.all
+    @jobs = Job.all.page(params[:page])
   end
 
   def new
@@ -22,6 +24,21 @@ class UsersController < ApplicationController
       flash.now[:danger] = 'ユーザの登録に失敗しました。'
       render :new
     end
+  end
+  
+  def followings
+    @user = User.find(params[:id])
+    @followings = @user.followings.page(params[:page])
+  end
+  
+  def corporationes
+    @user = current_user
+    @companies = Company.all
+  end
+  
+  def undertakes
+    @user = User.find(params[:id])
+    @jobs = @user.undertakes.page(params[:page])
   end
   
   private

@@ -1,0 +1,18 @@
+<ul class="list-unstyled">
+  <% jobs.each do |job| %>
+    <li class="media mb-3">
+      <img class="mr-2 rounded" src="<%= gravatar_url(job.company, { size: 50 }) %>" alt="">
+      <div class="media-body">
+        <div>
+          <p class="mb-0"><%= job.content %></p>
+        </div>
+        <div>
+          <% if current_company == job.company %>
+            <%= link_to "Delete", job, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+  <%= paginate jobs %>
+</ul>

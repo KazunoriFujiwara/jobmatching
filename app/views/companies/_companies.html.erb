@@ -10,7 +10,7 @@
          <span class="text-muted"> registered at <%= company.created_at.to_s(:datetime_jp) %></span>
         </div>
         <div>
-          <%#= render 'relationships/follow_button', company: company %>
+          <%= render 'favorites/follow_button', company: company %>
         </div>
     </div>
   </li>

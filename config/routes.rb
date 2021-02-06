@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'favorites/create'
+  get 'favorites/destroy'
+  get 'jobs/create'
+  get 'jobs/destroy'
   get 'companies/index'
   get 'companies/show'
   get 'companies/new'
@@ -10,7 +14,12 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
 
   get 'signup', to: 'users#new'
-  resources :users, only: [:index, :show, :new, :create]
+  resources :users, only: [:index, :show, :new, :create] do
+    member do
+      get :followings
+      get :undertakes
+    end
+  end
   
   get 'corporation', to: 'users#corporationes'
   get 'clogin', to: 'sessions#c_new'
@@ -20,4 +29,7 @@ Rails.application.routes.draw do
   get 'csignup', to: 'companies#new'
   #get 'login', to: 'companies#sign_in'
   resources :companies, only: [:index, :show, :new, :create]
+  resources :favorites, only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
+  resources :jobs, only: [:new, :create, :destroy]
 end

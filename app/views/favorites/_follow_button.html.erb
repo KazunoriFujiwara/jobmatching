@@ -1,0 +1,11 @@
+<% if current_user.following?(company) %>
+  <%= form_with(model: current_user.favorites.find_by(company_id: company.id), local: true, method: :delete) do |f| %>
+    <%= hidden_field_tag :company_id, company.id %>
+    <%= f.submit 'Unfollow', class: 'btn btn-danger btn-sm' %>
+  <% end %>
+<% else %>
+  <%= form_with(model: current_user.favorites.build, local: true) do |f| %>
+    <%= hidden_field_tag :company_id, company.id %>
+    <%= f.submit 'Follow', class: 'btn btn-primary btn-sm' %>
+  <% end %>
+<% end %>
