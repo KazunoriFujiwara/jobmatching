@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   end
   
   get 'corporation', to: 'users#corporationes'
+  get 'apply', to: 'users#applies'
   get 'applier', to: 'companies#appliers'
   get 'clogin', to: 'sessions#c_new'
   post 'clogin', to: 'sessions#c_create'

@@ -1,0 +1,36 @@
+  <% @company = current_company %>
+  <% array = Array.new %>
+  <% @members  = Array.new %>
+  <% jobs = @company.jobs.order(id: :desc) %>
+  <% jobs.each do |job| %>
+    <% unless Relationship.find_by(job_id: job.id)==nil then %>
+      <% a =  Relationship.where(job_id: job.id).pluck(:id).size %>
+        <% if a > 1 then %>
+          <% ary = Relationship.where(job_id: job.id).pluck(:id) %>
+          <% ary.each do |youso| %>
+            <% array.push(youso) %>
+          <% end %>
+        <% elsif %>
+          <% array.push(Relationship.where(job_id: job.id).pluck(:id)) %>
+        <% end %>
+    <% end %>
+  <% end %>
+
+  <% array.each do |i| %>
+    <% x=Relationship.where(id: i).pluck(:job_id) %>
+    <% y=Relationship.where(id: i).pluck(:user_id) %>
+    <% @z=User.where(id: y).pluck(:name) %>
+    <% @w=Job.where(id: x).pluck(:content) %>
+    <div>
+      <% @z.each do |p| %>
+        <h2><b><%= p %></b></h2>
+      <% end %>
+    <div>
+    <div>
+      <% @w.each do |q| %>
+        <%= q %>
+      <% end %>
+     <div>
+  <% end %>
+
+  <%#= paginate @hoge %>

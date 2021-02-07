@@ -36,6 +36,11 @@ class UsersController < ApplicationController
     @companies = Company.all
   end
   
+  def applies
+    @user = current_user
+    @undertakes = @user.undertakes.page(params[:page])
+  end
+  
   def undertakes
     @user = User.find(params[:id])
     @jobs = @user.undertakes.page(params[:page])

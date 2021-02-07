@@ -14,9 +14,10 @@
   </aside>
   <div class="col-sm-8">
     <ul class="nav nav-tabs nav-justified mb-3">
-      <li class="nav-item"><a href="#" class="nav-link <%= 'active' if current_page?(company_path(@company)) %>">お仕事一覧<span class="badge badge-secondary"></span></a></li>
-      <li class="nav-item"><a href="<%= applier_path %>">受託者一覧<span class="badge badge-secondary"></span></a></li>
+      <li class="nav-item"><a href="<%= company_path(current_company) %>" class="nav-link">お仕事一覧<span class="badge badge-secondary"></span></a></li>
+      <li class="nav-item"><a href="<%= applier_path %>" class="nav-link <%= 'active' %>">受託者一覧<span class="badge badge-primary"></span></a></li>
     </ul>
-    <%#= render 'jobs', jobs: @jobs %>
+    <%#= render 'appliers',members: @members%>
+    <%= render 'appliers'%>
   </div>
 </div>
