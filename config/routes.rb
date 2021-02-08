@@ -20,11 +20,13 @@ Rails.application.routes.draw do
     member do
       get :followings
       get :undertakes
+      get :searches
     end
   end
   
   get 'corporation', to: 'users#corporationes'
   get 'apply', to: 'users#applies'
+  #get 'serches', to: 'users#searches'
   get 'applier', to: 'companies#appliers'
   get 'clogin', to: 'sessions#c_new'
   post 'clogin', to: 'sessions#c_create'

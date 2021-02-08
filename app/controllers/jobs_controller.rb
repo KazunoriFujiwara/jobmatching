@@ -29,6 +29,11 @@ class JobsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
   
+  def search
+    #Viewのformで取得したパラメータをモデルに渡す
+    @jobs = Job.search(params[:search])
+  end
+  
   private
 
   def job_params

@@ -46,6 +46,10 @@ class UsersController < ApplicationController
     @jobs = @user.undertakes.page(params[:page])
   end
   
+  def searches
+    @user = User.find(params[:id])
+    @jobs = Job.search(params[:search])
+  end
   private
 
   def user_params

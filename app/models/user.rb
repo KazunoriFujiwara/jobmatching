@@ -37,5 +37,9 @@ class User < ApplicationRecord
     self.followings.include?(company)
   end
   
+  def self.search(search)
+      return Job.all unless search
+      Job.where(['content LIKE ?', "%#{search}%"])
+  end
   
 end

@@ -1,0 +1,13 @@
+<p>検索</p>
+<%= form_tag(searches_user_path,:method => 'get') do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag 'Search', :name => nil %>
+<% end %>
+
+<ul><% @jobs.each do |job| %>
+  <li>
+    <%= job.content %>
+    <%= job.created_at %>
+  </li>
+  <% end %>
+</ul>

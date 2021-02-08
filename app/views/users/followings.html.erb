@@ -15,6 +15,7 @@
       <li class="nav-item"><a href="<%= followings_user_path(@user) %>" class="nav-link <%= 'active' %>">お気に入り企業<span class="badge badge-primary"></span></a></li>
       <li class="nav-item"><a href="<%= apply_path %>" class="nav-link">受けたお仕事<span class="badge badge-secondary"></span></a></li>
       <li class="nav-item"><a href="<%= corporation_path %>" class="nav-link">企業一覧<span class="badge badge-secondary"></span></a></li>
+      <li class="nav-item"><a href="<%= searches_user_path(@user) %>" class="nav-link">お仕事検索<span class="badge badge-primary"></span></a></li>
     </ul>
     <%= render 'followings',companies: @followings %>
   </div>
