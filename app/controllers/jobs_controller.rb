@@ -30,7 +30,6 @@ class JobsController < ApplicationController
   end
   
   def search
-    #Viewのformで取得したパラメータをモデルに渡す
     @jobs = Job.search(params[:search])
   end
   

@@ -43,27 +43,7 @@ class CompaniesController < ApplicationController
         end
       end
     end
-    #puts Relationship.find_by(id: 3).user_id
-    #array.each do |x|
-      #puts x,':'
-      #x=Relationship.where(id: i).pluck(:job_id)
-      #y=Relationship.where(id: i).pluck(:user_id)
-      #puts Relationship.find_by(id: i) #.user_id
-      #z=User.where(id: y).pluck(:name)
-      #w=Job.where(id: x).pluck(:content)
-      #@members.push('受託者名:'+ User.where(id: y).pluck(:name) + ' 委託業務:'+ Job.where(id: x).pluck(:content))
-      #puts 'i',i
-      #puts 'y',y
-      #puts 'x',x
-      #puts z
-      #puts w
-      
-      #puts User.where(id: 2).pluck(:name)
-    #end
-    #@hoge = Kaminari.paginate_array(@memmbers).page(params[:page]).per(4)
   end
-  
-  
   
   private
 

@@ -26,14 +26,12 @@ Rails.application.routes.draw do
   
   get 'corporation', to: 'users#corporationes'
   get 'apply', to: 'users#applies'
-  #get 'serches', to: 'users#searches'
   get 'applier', to: 'companies#appliers'
   get 'clogin', to: 'sessions#c_new'
   post 'clogin', to: 'sessions#c_create'
   delete 'clogout', to: 'sessions#c_destroy'
   
   get 'csignup', to: 'companies#new'
-  #get 'login', to: 'companies#sign_in'
   resources :companies, only: [:index, :show, :new, :create]
   resources :favorites, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
