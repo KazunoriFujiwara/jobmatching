@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:index, :show]
+  before_action :require_user_logged_in, only: [:index, :show, :followings, :corporationes, :applies, :undertakes, :searches]
   def index
     @users = User.order(id: :desc).page(params[:page]).per(25)  #User.order(id: :desc) で id の降順にユーザの一覧を取得
   end
