@@ -1,7 +1,17 @@
 class CompaniesController < ApplicationController
-  before_action :require_company_clogged_in, only: [:index, :show]
+  before_action :require_permission
+  
+  def require_permission
+    if logged_in?
+    elsif clogged_in?
+    else
+      redirect_to login_url
+    end
+  end
+  
   def index
-    @companies = Company.order(id: :desc).page(params[:page]).per(25)
+    redirect_to root_url
+    #@companies = Company.order(id: :desc).page(params[:page]).per(25)
   end
 
   def show
@@ -50,6 +60,5 @@ class CompaniesController < ApplicationController
   def company_params
     params.require(:company).permit(:name, :email, :password, :password_confirmation)
   end
-  
   
 end

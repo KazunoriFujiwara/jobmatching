@@ -1,22 +1,13 @@
-<div class="row">
-  <aside class="col-sm-4">
-    <div class="card">
-      <div class="card-header">
-        <h1 class="card-title"><%= @user.name %></h1>
-      </div>
-      <div class="card-body">
-        <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
-      </div>
-    </div>
-  </aside>
-  <div class="col-sm-8">
-    <ul class="nav nav-tabs nav-justified mb-3">
-      <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= 'active' %>">お仕事一覧<span class="badge badge-primary"></span></a></li>
-      <li class="nav-item"><a href="<%= followings_user_path(@user) %>" class="nav-link">お気に入り企業<span class="badge badge-secondary"></span></a></li>
-      <li class="nav-item"><a href="<%= apply_path(@user) %>" class="nav-link">受けたお仕事<span class="badge badge-secondary"></span></a></li>
-      <li class="nav-item"><a href="<%= corporation_path %>" class="nav-link">企業一覧<span class="badge badge-secondary"></span></a></li>
-      <li class="nav-item"><a href="<%= searches_user_path(@user) %>" class="nav-link">お仕事検索<span class="badge badge-primary"></span></a></li>
-    </ul>
-    <%= render 'jobs' %>
+<h1>ユーザーの詳細</h1>
+<div class="media">
+  <img class="mr-2" src="/assets/hito.png">
+  <div class="media-body">
+    <h3 class="mt-0">名前：<%= @user.name %></h3>
+    <h5 class="mt-0">email：<%= @user.email %></h5>
+    
+    <%= link_to :back do %>
+      <button>戻る</button>
+    <% end %>
   </div>
 </div>
+

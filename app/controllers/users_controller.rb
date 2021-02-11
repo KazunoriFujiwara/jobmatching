@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:index, :show, :followings, :corporationes, :applies, :undertakes, :searches]
+  before_action :require_user_logged_in, only: [:index, :show, :corporationes, :applies, :undertakes, :searches]
   def index
-    @users = User.order(id: :desc).page(params[:page]).per(25)  #User.order(id: :desc) で id の降順にユーザの一覧を取得
+    redirect_to root_url
+    #@users = User.order(id: :desc).page(params[:page]).per(25)  #User.order(id: :desc) で id の降順にユーザの一覧を取得
   end
 
   def show
@@ -26,16 +27,15 @@ class UsersController < ApplicationController
     end
   end
   
-  def followings
-    @user = User.find(params[:id])
-    @followings = @user.followings.page(params[:page])
+  def delete_test
+    @job = Job.find(params[:id])
   end
-  
+ 
   def corporationes
     @user = current_user
     @companies = Company.all
   end
-  
+
   def applies
     @user = current_user
     @undertakes = @user.undertakes.page(params[:page])

@@ -7,6 +7,5 @@ class Company < ApplicationRecord
   has_secure_password
   
   has_many :jobs
-  belongs_to :user, optional: true
-  has_many :favorites
+
 end

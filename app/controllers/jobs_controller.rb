@@ -1,21 +1,33 @@
 class JobsController < ApplicationController
-  before_action :require_company_clogged_in
+  before_action :require_permission
+  
+  def require_permission
+    if logged_in?
+    elsif clogged_in?
+    else
+      redirect_to login_url
+    end
+  end
+
   before_action :correct_company, only: [:destroy]
   
+  def index
+    redirect_to root_url
+  end
+
   def new
     @job = Job.new
   end
   
   def show
-    @relationship = current_user.relationships.find_by(job_id: @mjob.id)
-    @relationships = @job.relationship_users
+    @job = Job.find(params[:id])
   end
   
   def create
     @job = current_company.jobs.build(job_params)
     if @job.save
       flash[:success] = 'お仕事を登録しました。'
-      redirect_to company_path(current_company)
+      redirect_to root_url
     else
       @jobs = current_company.jobs.order(id: :desc).page(params[:page])
       flash.now[:danger] = 'お仕事の登録に失敗しました。'

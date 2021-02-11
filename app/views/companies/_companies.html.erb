@@ -4,13 +4,10 @@
     <img class="mr-2 rounded" src="<%= gravatar_url(company, { size: 50 }) %>" alt="">
     <div class="media-body">
         <div>
-          <b><%= company.name %></b>
+          <b><%= link_to company.name,company %></b>
         </div>
         <div>
          <span class="text-muted"> registered at <%= company.created_at.to_s(:datetime_jp) %></span>
-        </div>
-        <div>
-          <%= render 'favorites/follow_button', company: company %>
         </div>
     </div>
   </li>

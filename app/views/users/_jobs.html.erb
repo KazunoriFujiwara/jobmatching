@@ -4,7 +4,7 @@
       <img class="mr-2 rounded" src="<%= gravatar_url(job.company, { size: 50 }) %>" alt="">
       <div class="media-body">
         <div>
-          <b><%= job.id %><%= job.content %></b>
+          <b><%= job.id %><%= link_to job.content,job %></b>
         </div>
         <div>
          <span class="text-muted"> registered at <%= job.created_at.to_s(:datetime_jp) %></span>

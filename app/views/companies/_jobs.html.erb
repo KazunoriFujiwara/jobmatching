@@ -9,7 +9,6 @@
         <div>
           <% if current_company == job.company %>
             <% unless Relationship.find_by(job_id: job.id)==nil then %>
-              <%#= job.id %>
               <span class="text-muted"> ※受託中のため、削除不可 </span>
             <% else %>
               <%= link_to "取下げ", job, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>

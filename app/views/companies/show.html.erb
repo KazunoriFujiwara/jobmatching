@@ -1,22 +1,12 @@
-<div class="row">
-  <aside class="col-sm-4">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title"><%= @company.name %></h3>
-      </div>
-      <div class="card-body">
-        <img class="rounded img-fluid" src="<%= gravatar_url(@company, { size: 500 }) %>" alt="">
-      </div>
-      <div class="card-body">
-        <%= link_to '新規お仕事の登録',new_job_path, class: "btn btn-primary" %>
-      </div>
-    </div>
-  </aside>
-  <div class="col-sm-8">
-    <ul class="nav nav-tabs nav-justified mb-3">
-      <li class="nav-item"><a href="<%= company_path(current_company) %>" class="nav-link <%= 'active' %>">お仕事一覧<span class="badge badge-secondary"></span></a></li>
-      <li class="nav-item"><a href="<%= applier_path %>">受託者一覧<span class="badge badge-secondary"></span></a></li>
-    </ul>
-    <%= render 'jobs', jobs: @jobs %>
+<h1>企業様の詳細</h1>
+<div class="media">
+  <img class="mr-2" src="/assets/company.png">
+  <div class="media-body">
+    <h3 class="mt-0">企業様名：<%= @company.name %></h3>
+    <h5 class="mt-0">email：<%= @company.email %></h5>
+    
+    <%= link_to :back do %>
+      <button>戻る</button>
+    <% end %>
   </div>
 </div>

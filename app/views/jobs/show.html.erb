@@ -1,0 +1,12 @@
+<h1>お仕事の詳細</h1>
+<div class="media">
+  <img class="mr-2" src="/assets/jobs2.jpg" alt="6x6 image">
+  <div class="media-body">
+    <h3 class="mt-0">お仕事内容：<%= @job.content %></h3>
+    <h5 class="mt-0">依頼企業名：<%= @job.company.name %></h5>
+
+    <%= link_to :back do %>
+      <button>戻る</button>
+    <% end %>
+  </div>
+</div>

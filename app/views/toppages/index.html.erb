@@ -12,15 +12,15 @@
   </aside>
   <div class="col-sm-8">
     <ul class="nav nav-tabs nav-justified mb-3">
-      <li class="nav-item"><a href="#" class="nav-link">お仕事一覧</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">お気に入り企業</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">受けたお仕事</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">企業一覧</a></li>
+      <li class="nav-item"><a href="<%= root_url %>" class="nav-link <%= 'active' %>">お仕事一覧<span class="badge badge-primary"></span></a></li>
+      <li class="nav-item"><a href="<%= apply_path(@user) %>" class="nav-link">受けたお仕事<span class="badge badge-secondary"></span></a></li>
+      <li class="nav-item"><a href="<%= corporation_path %>" class="nav-link">企業一覧<span class="badge badge-secondary"></span></a></li>
+      <li class="nav-item"><a href="<%= searches_user_path(@user) %>" class="nav-link">お仕事検索<span class="badge badge-primary"></span></a></li>
     </ul>
+    <%= render 'users/jobs' %>
   </div>
 </div>
 <% elsif clogged_in? %>
-  <h1>お仕事ページ</h1>
     <div class="row">
     <aside class="col-sm-4">
       <div class="card">
@@ -36,11 +36,12 @@
       </div>
     </aside>
     <div class="col-sm-8">
-      <ul class="nav nav-tabs nav-justified mb-3">
-        <li class="nav-item"><a href="#" class="nav-link <%= 'active' if current_page?(company_path(current_company)) %>">お仕事一覧<span class="badge badge-secondary"></span></a></li>
-        <li class="nav-item"><a href="#" class="nav-link",  new_job_path %>受託者一覧<span class="badge badge-secondary"></span></a></li>
-      </ul>
-    </div>
+    <ul class="nav nav-tabs nav-justified mb-3">
+      <li class="nav-item"><a href="<%= root_url %>" class="nav-link <%= 'active' %>">お仕事一覧<span class="badge badge-secondary"></span></a></li>
+      <li class="nav-item"><a href="<%= applier_path %>">受託者一覧<span class="badge badge-secondary"></span></a></li>
+    </ul>
+    <%= render 'companies/jobs', jobs: @jobs %>
+  </div>
   </div>
 <% else %>
   <div class="center jumbotron">

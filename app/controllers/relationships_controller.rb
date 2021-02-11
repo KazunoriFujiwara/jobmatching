@@ -4,13 +4,13 @@ class RelationshipsController < ApplicationController
     job = Job.find(params[:job_id])
     current_user.apply(job)
     flash[:success] = '仕事を受託しました。'
-    redirect_to user_path(current_user)
+    redirect_to root_url
   end
 
   def destroy
     job = Job.find(params[:job_id])
     current_user.withdraw(job)
     flash[:success] = '受託をキャンセルしました。'
-    redirect_to user_path(current_user)
+    redirect_to root_url
   end
 end
