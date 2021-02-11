@@ -5,7 +5,8 @@ class CompaniesController < ApplicationController
     if logged_in?
     elsif clogged_in?
     else
-      redirect_to login_url
+      #redirect_to login_url
+      #require_user_clogged_in, only: [:index, :show, :corporationes, :applies, :undertakes, :searches]
     end
   end
   
