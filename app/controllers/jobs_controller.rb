@@ -48,7 +48,7 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:content)
+    params.require(:job).permit(:content,:start_date,:start_time,:end_date,:end_time,:place)
   end
   
   def correct_company

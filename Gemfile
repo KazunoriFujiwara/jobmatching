@@ -56,3 +56,17 @@ gem 'kaminari'
 group :production do
   gem 'pg', '>= 0.18', '< 2.0'
 end
+
+
+# bootstrap4
+gem 'jquery-rails'
+#gem 'bootstrap', '~> 4.3.1'
+
+# font-awesome
+gem 'font-awesome-rails'
+
+# moment.js
+gem 'momentjs-rails'
+
+# Tempus Dominus
+gem 'bootstrap4-datetime-picker-rails'

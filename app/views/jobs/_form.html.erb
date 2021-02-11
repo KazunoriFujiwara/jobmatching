@@ -5,10 +5,27 @@
       <%= render 'layouts/error_messages', model: f.object %>
 
       <div class="form-group">
-        <%= f.label :content, 'お仕事内容' %>
-        <%= f.text_field :content, class: 'form-control' %>
-      </div>
+        <div>
+          <%= f.label :content, 'お仕事内容' %>
+          <%= f.text_field :content, class: 'form-control' %>
+        </div>
 
+        <div>
+          <label>開始日</label>
+          <%= f.date_field :start_date %>
+          <%= f.time_field :start_time %>
+        </div>
+        <div>
+          <label>終了日</label>
+          <%= f.date_field :end_date %>
+          <%= f.time_field :end_time %>
+        </div>
+        <div>
+          <%= f.label :place, 'お仕事の場所' %>
+          <%= f.text_field :place, class: 'form-control' %>
+        </div>
+      </div>
+      
       <%= f.submit '登録', class: 'btn btn-primary' %>
     <% end %>
   </div>
