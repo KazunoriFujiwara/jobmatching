@@ -3,7 +3,7 @@ class ToppagesController < ApplicationController
     if logged_in?
       @user = current_user
       @companies = Company.all
-      @jobs = Job.all.page(params[:page])
+      @jobs = Job.all.page(params[:page]).per(5)
     end
     if clogged_in?
       @job = current_company.jobs.build

@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @companies = Company.all
-    @jobs = Job.all.page(params[:page])
+    @jobs = Job.all.page(params[:page]).per(5)
   end
 
   def new
@@ -27,9 +27,9 @@ class UsersController < ApplicationController
     end
   end
   
-  def delete_test
-    @job = Job.find(params[:id])
-  end
+  #def delete_test
+    #@job = Job.find(params[:id])
+  #end
  
   def corporationes
     @user = current_user
