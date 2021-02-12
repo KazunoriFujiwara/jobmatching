@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_06_135239) do
+ActiveRecord::Schema.define(version: 2021_02_12_004754) do
 
   create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -20,20 +20,16 @@ ActiveRecord::Schema.define(version: 2021_02_06_135239) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "company_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_favorites_on_company_id"
-    t.index ["user_id"], name: "index_favorites_on_user_id"
-  end
-
   create_table "jobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "content"
     t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "start_date"
+    t.time "start_time"
+    t.date "end_date"
+    t.time "end_time"
+    t.string "place"
     t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 
@@ -54,8 +50,6 @@ ActiveRecord::Schema.define(version: 2021_02_06_135239) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "favorites", "companies"
-  add_foreign_key "favorites", "users"
   add_foreign_key "jobs", "companies"
   add_foreign_key "relationships", "jobs"
   add_foreign_key "relationships", "users"
