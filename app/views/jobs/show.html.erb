@@ -20,10 +20,16 @@
     </div>
     <div>
       <th>お仕事の場所:</th>
-      <td><%= @job.place %></td>
+      <td><%= @job.place %></td><br>
+      <br>
     </div>
+    <div>
+       <%= render 'relationships/relationship_button', job: @job %><br>
+    </div>
+    <div>
     <%= link_to :back do %>
       <button>戻る</button>
     <% end %>
+    </div>
   </div>
 </div>

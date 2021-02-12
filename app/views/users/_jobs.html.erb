@@ -1,22 +1,24 @@
 <ul class="list-unstyled">
-  <% @jobs.each do |job| %>
-    <li class="media mb-3">
-      <img class="mr-2 rounded" src="<%= gravatar_url(job.company, { size: 50 }) %>" alt="">
-      <div class="media-body">
-        <div>
-          <b><%= job.id %><%= link_to job.content,job %></b>
+  <% jobs.each do |job| %>
+    <% if Relationship.find_by(job_id: job.id)==nil then %>
+      <li class="media mb-3">
+        <img class="mr-2 rounded" src="<%= gravatar_url(job.company, { size: 50 }) %>" alt="">
+        <div class="media-body">
+          <div>
+            <b><%= job.id %><%= link_to job.content,job %></b>
+          </div>
+          <div>
+           <span class="text-muted"> registered at <%= job.created_at.to_s(:datetime_jp) %></span>
+          </div>
+          <div>
+            <%= job.company.name %>
+          </div>
+          <div>
+            <%= render 'relationships/relationship_button', job: job %>
+          </div>
         </div>
-        <div>
-         <span class="text-muted"> registered at <%= job.created_at.to_s(:datetime_jp) %></span>
-        </div>
-        <div>
-          <%= job.company.name %>
-        </div>
-        <div>
-          <%= render 'relationships/relationship_button', job: job %>
-        </div>
-      </div>
-    </li>
+      </li>
+    <% end %>
   <% end %>
-  <%= paginate @jobs %>
+  <%#= paginate jobs %>
 </ul>

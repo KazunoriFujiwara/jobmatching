@@ -26,10 +26,6 @@ class UsersController < ApplicationController
       render :new
     end
   end
-  
-  #def delete_test
-    #@job = Job.find(params[:id])
-  #end
  
   def corporationes
     @user = current_user
@@ -44,6 +40,11 @@ class UsersController < ApplicationController
   def undertakes
     @user = User.find(params[:id])
     @jobs = @user.undertakes.page(params[:page])
+  end
+  
+  def noundertaeks
+    @user = User.all
+    @jobs = @user.undertakes.not
   end
   
   def searches

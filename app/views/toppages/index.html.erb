@@ -17,7 +17,7 @@
       <li class="nav-item"><a href="<%= corporation_path %>" class="nav-link">企業一覧<span class="badge badge-secondary"></span></a></li>
       <li class="nav-item"><a href="<%= searches_user_path(@user) %>" class="nav-link">お仕事検索<span class="badge badge-primary"></span></a></li>
     </ul>
-    <%= render 'users/jobs' %>
+    <%= render 'users/jobs',jobs: @jobs %>
   </div>
 </div>
 <% elsif clogged_in? %>

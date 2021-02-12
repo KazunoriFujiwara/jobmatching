@@ -3,7 +3,7 @@ class RelationshipsController < ApplicationController
   def create
     job = Job.find(params[:job_id])
     current_user.apply(job)
-    flash[:success] = '仕事の募集を受け付けました。委託会社よりご連絡がありますのでお待ちください。'
+    flash[:success] = '仕事の受託希望を受け付けました。委託会社よりご連絡がありますのでお待ちください。'
     redirect_to root_url
   end
 
