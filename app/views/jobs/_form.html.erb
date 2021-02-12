@@ -23,6 +23,7 @@
         <div>
           <%= f.label :place, 'お仕事の場所' %>
           <%= f.text_field :place, class: 'form-control' %>
+          <%= f.hidden_field :status, value: '募集中' %>
         </div>
       </div>
       

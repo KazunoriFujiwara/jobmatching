@@ -20,9 +20,11 @@ Rails.application.routes.draw do
   get 'clogin', to: 'sessions#c_new'
   post 'clogin', to: 'sessions#c_create'
   delete 'clogout', to: 'sessions#c_destroy'
+  get 'confirm', to: 'jobs#confirm'
   
   get 'csignup', to: 'companies#new'
-  resources :companies, only: [:index, :show, :new, :create]
-  resources :relationships, only: [:create, :destroy]
-  resources :jobs, only: [:new, :show, :create, :destroy]
+  resources :companies, only: [:index, :show, :new, :create, :update]
+  resources :relationships, only: [:create, :destroy, :update]
+  resources :jobs, only: [:new, :show, :create, :destroy, :update]
+  
 end

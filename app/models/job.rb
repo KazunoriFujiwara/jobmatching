@@ -13,4 +13,11 @@ class Job < ApplicationRecord
     return Job.all unless search
     Job.where(['content LIKE ?', "%#{search}%"])
   end
+  
+  def confirm
+    job = Job.find(params[:job_id])
+    job.update_attribute(:status, "委託確定")
+  end
+  
+
 end

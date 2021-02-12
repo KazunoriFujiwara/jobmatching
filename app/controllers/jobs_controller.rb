@@ -19,10 +19,17 @@ class JobsController < ApplicationController
     @job = Job.new
   end
   
+  def update
+    job = Job.find(params[:id])
+    job.update_attribute(:status, "委託確定")
+    flash[:success] = '委託を確定しました。'
+    redirect_to root_url
+  end
+  
   def show
     @job = Job.find(params[:id])
   end
-  
+
   def create
     @job = current_company.jobs.build(job_params)
     if @job.save
@@ -48,7 +55,7 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:content,:start_date,:start_time,:end_date,:end_time,:place)
+    params.require(:job).permit(:content,:start_date,:start_time,:end_date,:end_time,:place,:status,:update)
   end
   
   def correct_company

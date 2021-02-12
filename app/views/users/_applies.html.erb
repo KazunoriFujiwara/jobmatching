@@ -7,8 +7,15 @@
           <b><%= link_to job.content,job %></b><span class="text-muted"> registered at <%= job.created_at.to_s(:datetime_jp) %></span>
         </div>
         <div>
-          <%= job.company.name %>
+          <%= job.company.name %><br>
+          <%#= job.status %>
+        </div>
+        <div>
+          <% if job.status == '委託確定'%>
           <%= render "relationships/relationship_button", job: job %>
+          <% else%>
+            企業様確認中
+          <% end %>
         </div>
       </div>
     </li>

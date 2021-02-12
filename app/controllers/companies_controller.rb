@@ -12,7 +12,6 @@ class CompaniesController < ApplicationController
   
   def index
     redirect_to root_url
-    #@companies = Company.order(id: :desc).page(params[:page]).per(25)
   end
 
   def show

@@ -9,7 +9,19 @@
         <div>
           <% if current_company == job.company %>
             <% unless Relationship.find_by(job_id: job.id)==nil then %>
-              <span class="text-muted"> ※受託中のため、削除不可 </span>
+              <% if job.status == '確認中'%>
+                <span class="text-muted"><%= job.status %></span>
+                <%= form_with(model: job, local: true) do |f| %>
+                  <%= hidden_field_tag :job_id, job.id %>
+                  <%= f.submit '委託確定', class: 'btn btn-primary btn-sm' %>
+                <% end %>
+                <%#= form_with(model: current_user.relationships.find_by(job_id: job.id), local: true, method: :delete) do |f| %>
+                  <%#= hidden_field_tag :job_id, job.id %>
+                  <%#= f.submit 'キャンセル', class: 'btn btn-danger btn-sm' %>
+                <%# end %>
+              <% else %>
+                <span class="text-muted">委託確定</span>
+              <% end %>
             <% else %>
               <%= link_to "取下げ", job, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
             <% end %>

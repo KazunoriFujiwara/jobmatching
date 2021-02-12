@@ -48,8 +48,7 @@
             <span class="text-muted">委託確定</span><br>
           <% end %>
         <% else %>
-          <span class="text-muted">募集中</span><br>
-          <%#= link_to "取下げ", @job, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+          <%= link_to "取下げ", @job, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
         <% end %>
       <% end %>
     </div>
