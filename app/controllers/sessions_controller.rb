@@ -1,5 +1,19 @@
 class SessionsController < ApplicationController
+  
   def new
+    if logged_in?
+      redirect_to root_url
+    elsif clogged_in?
+      redirect_to root_url
+    end
+  end
+  
+  def c_new
+    if logged_in?
+      redirect_to root_url
+    elsif clogged_in?
+      redirect_to root_url
+    end
   end
 
   def create
