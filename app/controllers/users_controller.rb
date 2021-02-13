@@ -42,10 +42,10 @@ class UsersController < ApplicationController
     @jobs = @user.undertakes.page(params[:page])
   end
   
-  def noundertaeks
-    @user = User.all
-    @jobs = @user.undertakes.not
-  end
+  #def noundertaeks
+    #@user = User.all
+    #@jobs = @user.undertakes.not
+  #end
   
   def searches
     @user = User.find(params[:id])

@@ -40,7 +40,7 @@
       <li class="nav-item"><a href="<%= root_url %>" class="nav-link <%= 'active' %>">お仕事一覧<span class="badge badge-secondary"></span></a></li>
       <li class="nav-item"><a href="<%= applier_path %>">受託者一覧<span class="badge badge-secondary"></span></a></li>
     </ul>
-    <%= render 'companies/jobs', jobs: @jobs %>
+    <%= render 'jobs/jobs', jobs: @jobs %>
   </div>
   </div>
 <% else %>

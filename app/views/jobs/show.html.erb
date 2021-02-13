@@ -26,24 +26,30 @@
     <div>
       <% if logged_in? %>
         <% if @job.status == '委託確定'%>
+          委託確定<br>
           <%= render "relationships/relationship_button", job: @job %><br>
         <% elsif @job.status == '確認中'%>
           企業様確認中<br>
         <% elsif @job.status == '募集中'%>
+          募集中<br>
           <%= render "relationships/relationship_button", job: @job %><br>
         <% end %>
       <% elsif clogged_in?%>
         <% unless Relationship.find_by(job_id: @job.id)==nil then %>
           <% if @job.status == '確認中'%>
             <span class="text-muted"><%= @job.status %></span>
-            <%= form_with(model: @job, local: true) do |f| %>
-              <%= hidden_field_tag :job_id, @job.id %>
-              <%= f.submit '委託確定', class: 'btn btn-primary btn-sm' %><br>
-            <% end %>
-            <%#= form_with(model: current_user.relationships.find_by(job_id: job.id), local: true, method: :delete) do |f| %>
-              <%#= hidden_field_tag :job_id, job.id %>
-              <%#= f.submit 'キャンセル', class: 'btn btn-danger btn-sm' %>
-            <%# end %>
+            <div class="btn-toolbar">
+            <div class="btn-group">
+              <%= form_with(model: @job, local: true) do |f| %>
+                <%= hidden_field_tag :job_id, @job.id %>
+                <%= f.submit '委託確定', class: 'btn btn-primary btn-sm' %>
+              <% end %>
+              <%= form_with(model: Relationship.find_by(job_id: @job.id), local: true, method: :delete) do |f| %>
+                <%= hidden_field_tag :job_id, @job.id %>
+                <%= f.submit '却下', class: 'btn btn-danger btn-sm' %>
+              <% end %>
+            </div>
+            </div>
           <% else %>
             <span class="text-muted">委託確定</span><br>
           <% end %>

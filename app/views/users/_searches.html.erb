@@ -6,9 +6,18 @@
   検索ワード：　<%= params[:search] %>
 
 <ul><% @jobs.each do |job| %>
+  <% if Relationship.find_by(job_id: job.id)==nil then %>
+  
   <li>
     <%= link_to job.content,job %>
     <%= job.created_at.strftime("%Y-%m-%d %H:%M") %>
   </li>
+  <% end %>
+  <% unless current_user.relationships.find_by(job_id: job.id)==nil then %>
+  <li>
+    <%= link_to job.content,job %>
+    <%= job.created_at.strftime("%Y-%m-%d %H:%M") %>
+  </li>
+  <% end %>
   <% end %>
 </ul>
