@@ -6,9 +6,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @companies = Company.all
-    @jobs = Job.all.page(params[:page]).per(5)
+    @user = current_user
+    #@user = User.find(params[:id])
+    #@companies = Company.all
+    #@jobs = Job.all.page(params[:page]).per(5)
   end
 
   def new
@@ -48,7 +49,8 @@ class UsersController < ApplicationController
   #end
   
   def searches
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
+    @user = current_user
     @jobs = Job.search(params[:search])
   end
   private
