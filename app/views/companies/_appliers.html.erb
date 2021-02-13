@@ -6,10 +6,10 @@
       <%= relationshiip.job.status %>
     </div>
     <div>
-      <h5 class="mt-0">受託者名：<%= relationshiip.user.name %></h5>
+      <h5 class="mt-0">受託者名：<%= link_to relationshiip.user.name,user_path(relationshiip.user) %></h5>
     </div>
     <div>
-      <h6 class="mt-0">委託お仕事：<%= relationshiip.job.content %></h6><br>
+      <h6 class="mt-0">委託お仕事：<%= link_to relationshiip.job.content,job_path(relationshiip.job) %></h6><br>
     </div>
   <% end %>
 <% end %>
