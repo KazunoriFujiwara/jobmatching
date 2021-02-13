@@ -5,24 +5,37 @@ class SessionsController < ApplicationController
   def create
     email = params[:session][:email].downcase
     password = params[:session][:password]
-    if login(email, password)
-      flash[:success] = 'ログインに成功しました。'
-      redirect_to root_url
+    
+    if current_company == nil && current_user == nil
+      if login(email, password)
+        flash[:success] = 'ログインに成功しました。'
+        redirect_to root_url
+      else
+        flash.now[:danger] = 'ログインに失敗しました。'
+        render :new
+      end
     else
-      flash.now[:danger] = 'ログインに失敗しました。'
-      render :new
+      flash.now[:danger] = '複数のログインに失敗しました。'
+        render :new 
     end
+    
   end
   
   def c_create
     email = params[:session][:email].downcase
     password = params[:session][:password]
-    if clogin(email, password)
-      flash[:success] = 'ログインに成功しました。'
-      redirect_to root_url
+    
+    if current_company == nil && current_user == nil
+      if clogin(email, password)
+        flash[:success] = 'ログインに成功しました。'
+        redirect_to root_url
+      else
+        flash.now[:danger] = 'ログインに失敗しました。'
+        render :c_new
+      end
     else
-      flash.now[:danger] = 'ログインに失敗しました。'
-      render :new
+      flash.now[:danger] = '複数のログインに失敗しました。'
+        render :c_new 
     end
   end
   
@@ -42,6 +55,7 @@ class SessionsController < ApplicationController
 
   def login(email, password)
     @user = User.find_by(email: email)
+    puts current_company
     if @user && @user.authenticate(password)
       # ログイン成功
       session[:user_id] = @user.id
