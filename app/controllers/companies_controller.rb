@@ -1,31 +1,32 @@
 class CompaniesController < ApplicationController
-  before_action :require_permission
-  
-  def require_permission
-    if logged_in?
-    elsif clogged_in?
-    else
-      #redirect_to login_url
-      #require_user_clogged_in, only: [:index, :show, :corporationes, :applies, :undertakes, :searches]
-    end
-  end
-  
   def index
-    redirect_to root_url
+    if logged_in?
+     redirect_to root_url
+    elsif clogged_in?
+     redirect_to root_url
+    else
+     redirect_to clogin_url
+    end
   end
 
   def show
     if clogged_in?
-    @company = current_company
-    @jobs = @company.jobs.order(id: :desc).page(params[:page])
-  else
-    @company = Company.find(params[:id])
-    @jobs = @company.jobs.order(id: :desc).page(params[:page])
-  end
+      @company = current_company
+      @jobs = @company.jobs.order(id: :desc).page(params[:page])
+    elsif logged_in?
+      if Company.find_by(id: params[:id]) == nil
+        redirect_to root_url
+      else
+        @company = Company.find(params[:id])
+        @jobs = @company.jobs.order(id: :desc).page(params[:page])
+      end
+    else
+      redirect_to clogin_url
+    end
   end
 
   def new
-    @company = Company.new
+    require_new
   end
   
   def create
@@ -64,6 +65,16 @@ class CompaniesController < ApplicationController
 
   def company_params
     params.require(:company).permit(:name, :email, :password, :password_confirmation)
+  end
+  
+  def require_new
+    if logged_in?
+      redirect_to root_url
+    elsif clogged_in?
+      redirect_to root_url
+    else
+      @company = Company.new
+    end
   end
   
 end

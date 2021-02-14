@@ -85,15 +85,16 @@ class JobsController < ApplicationController
     if msg == '時間の入力に誤りがあります'
       @jobs = current_company.jobs.order(id: :desc).page(params[:page])
         flash.now[:danger] = 'お仕事の登録に失敗しました。'+ msg
-        render 'toppages/index'
+        render :new
     else
       if @job.save
         flash[:success] = 'お仕事を登録しました。'
         redirect_to root_url
       else
         @jobs = current_company.jobs.order(id: :desc).page(params[:page])
-        flash.now[:danger] = 'お仕事の登録に失敗しました。'+ msg
-        render 'toppages/index'
+        flash.now[:danger] = 'お仕事の登録に失敗しました。'
+        #render 'toppages/index'
+        render :new
       end
     end
   end
