@@ -27,8 +27,14 @@ class RelationshipsController < ApplicationController
     elsif clogged_in?
       relationship = Relationship.find_by(job_id: job.id)
       relationship.destroy if relationship
-      job.update_attribute(:status, "募集中")
-      flash[:success] = '受託を却下しました。'
+      if job.status == '委託確定'
+        flash[:success] = '委託業務が完了しました。'
+        job.update_attribute(:status, "完了")
+      else
+        flash[:success] = '受託を却下しました。'
+        job.update_attribute(:status, "募集中")
+      end
+      
     end
     redirect_to root_url
   end

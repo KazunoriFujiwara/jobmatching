@@ -25,6 +25,10 @@
                 </div>
               <% else %>
                 <span class="text-muted">委託確定</span>
+                <%= form_with(model: Relationship.find_by(job_id: job.id), local: true, method: :delete) do |f| %>
+                  <%= hidden_field_tag :job_id, job.id %>
+                  <%= f.submit '完了', class: 'btn btn-warning btn-sm' %>
+                <% end %>
               <% end %>
             <% else %>
               <%= link_to "取下げ", job, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>

@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   
   get 'csignup', to: 'companies#new'
   resources :companies, only: [:index, :show, :new, :create, :update]
-  resources :relationships, only: [:create, :destroy, :update]
+  resources :relationships, only: [:create, :destroy, :update, :done]
   resources :jobs, only: [:new, :show, :create, :destroy, :update]
   
 end
