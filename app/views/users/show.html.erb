@@ -4,10 +4,7 @@
   <div class="media-body">
     <h3 class="mt-0">名前：<%= @user.name %></h3>
     <h5 class="mt-0">email：<%= @user.email %></h5>
-    
-    <%= link_to :back do %>
-      <button>戻る</button>
-    <% end %>
+    <button><%= link_to '戻る', root_path %></button>
   </div>
 </div>
 

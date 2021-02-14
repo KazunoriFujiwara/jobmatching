@@ -14,9 +14,10 @@ class UsersController < ApplicationController
   def show
     if logged_in?
       @user = current_user
+    else
       if User.find_by(id: params[:id]) == nil
         redirect_to root_url
-      else
+      elsif clogged_in?
         @x = User.find(params[:id])
         @jobs = Job.all
         if relationshiip = Relationship.find_by(user_id: @x.id) == nil
@@ -30,15 +31,15 @@ class UsersController < ApplicationController
                   @user = User.find(params[:id])
                   break
                 else
-                redirect_to root_url
+                  redirect_to root_url
                 end
               end
             end
           end
         end
+      else
+        redirect_to login_url
       end
-    else
-      redirect_to login_url
     end
     
   end
