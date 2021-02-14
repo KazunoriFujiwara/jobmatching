@@ -15,13 +15,30 @@ class UsersController < ApplicationController
   end
 
   def show
-    puts 'hello'
     if logged_in?
       @user = current_user
     else
-      @user = User.find(params[:id])
+      @x = User.find(params[:id])
       #@companies = Company.all
-      #@jobs = Job.all.page(params[:page]).per(5)
+      @jobs = Job.all
+      if relationshiip = Relationship.find_by(user_id: @x.id) == nil
+        redirect_to root_url
+      else
+        @jobs.each do |job|
+          relationshiip = Relationship.find_by(job_id: job.id) 
+          unless relationshiip == nil then
+            if @x.id == relationshiip.user.id
+              if job.company_id == current_company.id
+                @user = User.find(params[:id])
+                puts 'hello'
+                break
+              else
+              redirect_to root_url
+              end
+            end
+          end
+        end
+      end
     end
     
   end
@@ -56,12 +73,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @jobs = @user.undertakes.page(params[:page])
   end
-  
-  #def noundertaeks
-    #@user = User.all
-    #@jobs = @user.undertakes.not
-  #end
-  
+
   def searches
     #@user = User.find(params[:id])
     @user = current_user

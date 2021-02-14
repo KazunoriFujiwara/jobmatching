@@ -15,8 +15,13 @@ class CompaniesController < ApplicationController
   end
 
   def show
+    if clogged_in?
+    @company = current_company
+    @jobs = @company.jobs.order(id: :desc).page(params[:page])
+  else
     @company = Company.find(params[:id])
     @jobs = @company.jobs.order(id: :desc).page(params[:page])
+  end
   end
 
   def new
